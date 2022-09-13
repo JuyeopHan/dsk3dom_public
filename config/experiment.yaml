@@ -1,0 +1,18 @@
+# experiment config
+
+#### for complex scenario
+# Info about map [m]
+resolution: 0.2
+size: 15.0
+size_z: 3.0
+
+# default sensor offset from map center [m]
+sensor_off_x: 0.0
+sensor_off_y: 0.0
+sensor_off_z: 0.0
+
+pose_imu_offset: 0 # yaw offset between "imu" frame and pose estimation
+
+# Bounds on map height
+min_z: -1.0
+max_z: 2.0
