@@ -1,0 +1,2 @@
+data/complex.bag filter=lfs diff=lfs merge=lfs -text
+data/experiment.bag filter=lfs diff=lfs merge=lfs -text
