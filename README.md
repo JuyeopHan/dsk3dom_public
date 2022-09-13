@@ -4,24 +4,23 @@ Implementation of DS-K3DOM
 
 ## How to build
 
-Implementation for simulation dataset
-
 ```console
 cd ~/catkin_ws/src
 git clone https://github.com/JuyeopHan/DS-K3DOM.git
 cd ~/catkin_ws && catkin_make
+```
+
+##Implementation for simulation dataset
+
+```console
 source devel/setup.bash
 roslaunch ds_k3dom ds_k3dom_demo.launch
 ```
 
-or
 
-Implementation for indoor dataset
+##Implementation for indoor dataset
 
 ```console
-cd ~/catkin_ws/src
-git clone https://github.com/JuyeopHan/DS-K3DOM.git
-cd ~/catkin_ws && catkin_make
 source devel/setup.bash
 roslaunch ds_k3dom ds_k3dom_exp.launch
 ```
