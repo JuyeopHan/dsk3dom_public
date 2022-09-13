@@ -10,7 +10,7 @@ git clone https://github.com/JuyeopHan/DS-K3DOM.git
 cd ~/catkin_ws && catkin_make
 ```
 
-##Implementation for simulation dataset
+## Implementation for simulation dataset
 
 ```console
 source devel/setup.bash
@@ -18,7 +18,7 @@ roslaunch ds_k3dom ds_k3dom_demo.launch
 ```
 
 
-##Implementation for indoor dataset
+## Implementation for indoor dataset
 
 ```console
 source devel/setup.bash
