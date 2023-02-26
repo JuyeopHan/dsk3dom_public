@@ -38,6 +38,6 @@ roslaunch ds_k3dom ds_k3dom_exp.launch
 ## References
 
 Juyeop Han*, Youngjae Min*, Hyeok-Joo Chae, Byeong-Min Jeong, and Han-Lim Choi, "DS-K3DOM: 3-D Dynamic Occupancy Mapping with Kernel Inference
-and Dempster-Shafer Evidential Theory" submitted to 2023 IEEE International Conference on Robotics and Automation (ICRA)
+and Dempster-Shafer Evidential Theory", 2023 IEEE International Conference on Robotics and Automation (ICRA)
 
 This code is extented from [youngjae-min/k3dom](https://github.com/youngjae-min/k3dom).
