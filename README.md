@@ -13,6 +13,7 @@ cd ~/catkin_ws && catkin_make
 ## Implementation for simulation dataset
 
 ```console
+cd ~/catkin_ws
 source devel/setup.bash
 roslaunch ds_k3dom ds_k3dom_demo.launch
 ```
@@ -21,6 +22,7 @@ roslaunch ds_k3dom ds_k3dom_demo.launch
 ## Implementation for indoor dataset
 
 ```console
+cd ~/catkin_ws
 source devel/setup.bash
 roslaunch ds_k3dom ds_k3dom_exp.launch
 ```
