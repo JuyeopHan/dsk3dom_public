@@ -360,7 +360,7 @@ int main(int argc, char** argv)
     float ls = 1.0; //  Length scale of the sparse kernel
 
     float gamma = 0.99f; // decaying factor for prediction update
-    float alpha = 0.5f;
+    float beta = 0.9f;
 
     // initial concentration parameter
     float prior_free = 1.0f; // unoccupied
@@ -407,7 +407,7 @@ int main(int argc, char** argv)
     nh.param<float>("sigma", sigma, sigma);
     nh.param<float>("ls", ls, ls);
     nh.param<float>("gamma", gamma, gamma);
-    nh.param<float>("alpha", alpha, alpha);
+    nh.param<float>("beta", beta, beta);
     nh.param<float>("prior_free", prior_free, prior_free);
     nh.param<float>("prior_static", prior_static, prior_static);
     nh.param<float>("prior_dynamic", prior_dynamic, prior_dynamic);
@@ -452,7 +452,7 @@ int main(int argc, char** argv)
             "sigma: " << sigma << std::endl <<
             "ls: " << ls << std::endl <<
             "gamma: " << gamma << std::endl <<
-            "alpha: " << alpha << std::endl <<
+            "beta: " << beta << std::endl <<
             "prior_free: " << prior_free << std::endl <<
             "prior_static: " << prior_static << std::endl <<
             "prior_dynamic: " << prior_dynamic << std::endl <<
@@ -478,7 +478,7 @@ int main(int argc, char** argv)
     grid_params.sigma = sigma;
     grid_params.ls = ls;
     grid_params.gamma = gamma;
-    grid_params.alpha = alpha;
+    grid_params.beta = beta;
     grid_params.prior_free = prior_free;
     grid_params.prior_static = prior_static;
     grid_params.prior_dynamic = prior_dynamic;

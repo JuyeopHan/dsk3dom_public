@@ -157,7 +157,6 @@ void DOM::gridCellOccupancyUpdate(float dt, KDTreeArr& kdtree_arr_pc, KDTreeArr&
     free_slot = kdtree_arr_free.slot;
 
     float gamma_pow = powf(params.gamma, dt);
-    float alpha_pow = powf(params.alpha, dt);
 
     CHECK_ERROR(cudaMalloc(&meas_x, meas_len * sizeof(float)));
     CHECK_ERROR(cudaMalloc(&meas_y, meas_len * sizeof(float)));
@@ -190,7 +189,7 @@ void DOM::gridCellOccupancyUpdate(float dt, KDTreeArr& kdtree_arr_pc, KDTreeArr&
                                                                 free_x, free_y, free_z, free_idx_arr,
                                                                 source_beam_idx, free_len, free_slot,
                                                                 grid_size, grid_size_z, params.resolution,
-                                                                params.sigma, params.ls, gamma_pow, alpha_pow, params.prior_all,
+                                                                params.sigma, params.ls, gamma_pow, params.beta, params.prior_all,
                                                                 sensor_pos_x - center_pos_x,
                                                                 sensor_pos_y - center_pos_y,
                                                                 sensor_pos_z - center_pos_z,

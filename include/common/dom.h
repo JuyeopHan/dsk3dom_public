@@ -46,7 +46,7 @@ public:
         float prior_all; // only for ds-k3dom
 
         // only for ds-k3dom
-        float alpha; // transfering factor for occupied mass -> alpha^(dt) * occ_mass
+        float beta; // transfering factor for occupied mass
 
         // only for k3dom
         float sigma; // sigma_0 in sparse kernel

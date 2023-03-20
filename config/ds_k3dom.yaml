@@ -44,4 +44,4 @@ prior_all: 0.001 # all states
 
 gamma: 0.99 # decaying factor for prediction update
 
-alpha: 0.9 # transfering factor for occupied cell prediction update
+beta: 0.98 # transfering factor for occupied cell prediction update

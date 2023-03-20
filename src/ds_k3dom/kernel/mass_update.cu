@@ -139,17 +139,17 @@ __device__ void DSRuleCombinationLidar(GridCell& grid_cell, float free_mass_meas
 }
 
 __device__ void predict_mass(GridCell& grid_cell, float free_mass_pred, float static_mass_pred, float& dynamic_mass_pred, float occ_mass_pred,
- float gamma_pow, float alpha_pow) {
-    float beta = alpha_pow * occ_mass_pred;
+ float gamma_pow, float beta) {
+    float beta_mass = 0.98f * occ_mass_pred;
 
     float total_mass = max(0.0f, 1.0f - free_mass_pred - static_mass_pred - dynamic_mass_pred - occ_mass_pred);
     float pignistic_dynamic = dynamic_mass_pred + 0.5f * occ_mass_pred + 0.3333 * total_mass;
     float pignistic_static = dynamic_mass_pred + 0.5f * occ_mass_pred + 0.3333 * total_mass;
     float delta = pignistic_dynamic/(pignistic_dynamic + pignistic_static + 1e-6);
 
-    grid_cell.dynamic_mass = min(dynamic_mass_pred + gamma_pow * delta * beta, 0.99999f);
-    grid_cell.static_mass = max(0.0f, min(gamma_pow * (static_mass_pred  + (1.0f - delta) * beta), 0.99999f - grid_cell.dynamic_mass));
-    grid_cell.occ_mass = max(0.0f, min(gamma_pow * (1.0f - alpha_pow) * occ_mass_pred, 0.99999f - grid_cell.dynamic_mass - grid_cell.static_mass));
+    grid_cell.dynamic_mass = min(dynamic_mass_pred + gamma_pow * delta * beta_mass, 0.99999f);
+    grid_cell.static_mass = max(0.0f, min(gamma_pow * (static_mass_pred  + (1.0f - delta) * beta_mass), 0.99999f - grid_cell.dynamic_mass));
+    grid_cell.occ_mass = max(0.0f, min(gamma_pow * (1.0f - 0.98f) * occ_mass_pred, 0.99999f - grid_cell.dynamic_mass - grid_cell.static_mass));
     grid_cell.free_mass = max(0.0f, min(gamma_pow * free_mass_pred, 0.99999f - grid_cell.dynamic_mass - grid_cell.static_mass - grid_cell.occ_mass));
     dynamic_mass_pred = grid_cell.dynamic_mass;
 
@@ -217,7 +217,7 @@ __global__ void gridCellPredictionUpdateKernel(
     const float* __restrict__ free_array_x, const float* __restrict__ free_array_y, const float* __restrict__ free_array_z,
     const int* __restrict__ free_idx_arr,  const int* __restrict__ source_beam_idx, int free_len, int free_slot,
     int grid_size, int grid_size_z, float resolution,
-    float sigma, float ls, float gamma_pow, float alpha_pow, float prior_all,
+    float sigma, float ls, float gamma_pow, float beta, float prior_all,
     float sensor_x, float sensor_y, float sensor_z, float center_pos_z)
     {
 
@@ -237,7 +237,7 @@ __global__ void gridCellPredictionUpdateKernel(
                 }
                 assert(dynamic_mass_pred >= 0.0f);
             }
-            predict_mass(grid_cell_array[i], free_mass_pred, static_mass_pred, dynamic_mass_pred, occ_mass_pred, gamma_pow, alpha_pow);
+            predict_mass(grid_cell_array[i], free_mass_pred, static_mass_pred, dynamic_mass_pred, occ_mass_pred, gamma_pow, beta);
             
             float occ_bel_pred = grid_cell_array[i].static_mass + grid_cell_array[i].dynamic_mass;
             //float occ_bel_pred = grid_cell_array[i].dynamic_mass;
