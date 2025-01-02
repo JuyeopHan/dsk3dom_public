@@ -46,7 +46,7 @@ This code is extented from [youngjae-min/k3dom](https://github.com/youngjae-min/
 
 ## Citation
 
-```console
+```
 @INPROCEEDINGS{
   DSK3DOM,
   author={Han, Juyeop and Min, Youngjae and Chae, Hyeok-Joo and Jeong, Byeong-Min and Choi, Han-Lim},
